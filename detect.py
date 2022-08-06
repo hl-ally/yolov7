@@ -17,6 +17,7 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized,
 
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
+    # 是否保存预测后的图片，默认opt.nosave为False， 所以只要传入的文件地址的结尾不是.txt
     save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://', 'https://'))
