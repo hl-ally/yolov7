@@ -17,7 +17,7 @@ from utils.torch_utils import select_device, load_classifier, time_synchronized,
 
 def detect(save_img=False):
     source, weights, view_img, save_txt, imgsz, trace = opt.source, opt.weights, opt.view_img, opt.save_txt, opt.img_size, not opt.no_trace
-    # 是否保存预测后的图片，默认opt.nosave为False， 所以只要传入的文件地址的结尾不是.txt
+    # 是否保存预测后的图片，默认opt.nosave为False， 所以只要传入的文件地址的结尾不是.txt, 就都保存预测后的图片
     save_img = not opt.nosave and not source.endswith('.txt')  # save inference images
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://', 'https://'))
@@ -165,6 +165,12 @@ def detect(save_img=False):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    """
+    weights:模型的权重文件。
+    source:待测试文件的路径,默认为inference/images
+    img-size:默认输入图片的大小
+    update:是否更新模型, 默认为false
+    """
     parser.add_argument('--weights', nargs='+', type=str, default='yolov7.pt', help='model.pt path(s)')
     parser.add_argument('--source', type=str, default='inference/images', help='source')  # file/folder, 0 for webcam
     parser.add_argument('--img-size', type=int, default=640, help='inference size (pixels)')
